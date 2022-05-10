@@ -1,0 +1,47 @@
+.ms-auto.menu.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.ms-auto.menu.navbar-nav > a {
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 14px;
+  margin-left: 1rem;
+}
+.dropdown-menu.show a {
+  color: black !important;
+}
+a#nav-dropdown {
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+span.ms-1.badge.rounded-pill.bg-danger {
+  margin-top: -1rem;
+}
+a.dropdown-item.active {
+  background-color: white;
+}
+.dropdown-menu.show {
+  width: 265px;
+  margin-left: -61px;
+}
+.offcanvas_btn {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+.spinner_grow {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+}
+
+figure.iiz {
+  height: 500px;
+}
