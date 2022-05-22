@@ -45,3 +45,10 @@ a.dropdown-item.active {
 figure.iiz {
   height: 500px;
 }
+svg.svg-inline--fa.fa-gratipay.fa-w-16 {
+  height: 30px;
+  width: 30px;
+  margin-left: 1rem;
+  vertical-align: middle;
+  cursor: pointer;
+}

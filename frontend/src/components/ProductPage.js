@@ -1,7 +1,15 @@
-import React, { useReducer, useEffect, useContext } from "react";
+import React, { useReducer, useEffect, useContext, useState } from "react";
 import "../app.css";
 
-import { Spinner, Container, Row, Col, Card, Button } from "react-bootstrap";
+import {
+  Spinner,
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Modal,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Rating from "./Rating";
@@ -28,6 +36,16 @@ export default function ProductPage() {
     error: "",
   });
 
+  const [lgShow, setLgShow] = useState(false);
+  const [details, setDetails] = useState({});
+
+  const handleDetails = async (e, pro) => {
+    e.preventDefault();
+    setLgShow(true);
+    const { data } = await axios.get(`http://localhost:8000/products/${pro}`);
+    setDetails(data);
+  };
+
   useEffect(() => {
     async function fetchData() {
       dispatch({ type: "FETCH_REQUEST" });
@@ -41,8 +59,11 @@ export default function ProductPage() {
     fetchData();
   }, []);
 
-  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { state, dispatch: ctxDispatch, state2, dispatch2 } = useContext(Store);
   const { cart } = state;
+  const {
+    wishlist: { wishlistItems },
+  } = state2;
 
   const handleAddToCart = async (products) => {
     const existingItem = cart.cartItems.find(
@@ -64,6 +85,14 @@ export default function ProductPage() {
     });
   };
 
+  const handleAddToWishlist = async (products) => {
+    dispatch2({
+      type: "WISHLIST_ADD_ITEM",
+      payload: { ...products },
+    });
+    console.log("click me");
+  };
+
   const {
     cart: { cartItems },
   } = state;
@@ -80,8 +109,6 @@ export default function ProductPage() {
       payload: item,
     });
   };
-
-  console.log(products);
 
   return (
     <Container>
@@ -148,19 +175,81 @@ export default function ProductPage() {
                   <br />
                   <br />
                   {/* Increament and Decrement Button End */}
-
-                  <Button
-                    variant="primary"
-                    onClick={() => handleAddToCart(item)}
-                  >
-                    Add to Cart
-                  </Button>
+                  {item.inStock == 0 ? (
+                    <>
+                      <Button variant="danger">Out of Stock</Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => handleAddToWishlist(item)}
+                        className="mt-2"
+                      >
+                        Wishlist
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button
+                        variant="primary"
+                        onClick={() => handleAddToCart(item)}
+                      >
+                        Add to Cart
+                      </Button>
+                      <Button
+                        onClick={(e) => handleDetails(e, item.name)}
+                        className="ms-2"
+                      >
+                        Details
+                      </Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => handleAddToWishlist(item)}
+                        className="mt-2"
+                      >
+                        Wishlist
+                      </Button>
+                    </>
+                  )}
                 </Card.Body>
               </Card>
             </Col>
           ))
         )}
       </Row>
+      {/* Modal Start */}>
+      <Modal
+        size="lg"
+        show={lgShow}
+        onHide={() => setLgShow(false)}
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
+        <Modal.Header closeButton>
+          <Row>
+            <Modal.Title
+              id="example-modal-sizes-title-lg"
+              className="mb-3 text-center"
+            >
+              {details.name}
+            </Modal.Title>
+            <Col lg={6}>
+              <img
+                src={details.img}
+                alt={details.name}
+                style={{ width: "100%", maxHeight: "400px" }}
+              />
+            </Col>
+            <Col lg={6}>
+              <h4>$ {details.price}</h4>
+              <p>{details.description}</p>
+              <Button
+                variant="primary"
+                onClick={() => handleAddToCart(details)}
+              >
+                Add to Cart
+              </Button>
+            </Col>
+          </Row>
+        </Modal.Header>
+      </Modal>
     </Container>
   );
 }

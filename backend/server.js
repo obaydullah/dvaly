@@ -1,10 +1,22 @@
 import express from "express";
 import cors from "cors";
 import data from "./data.js";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
 
 const app = express();
+dotenv.config();
 
 app.use(cors());
+
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => {
+    console.log("mongodb connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.get("/", function (req, res) {
   res.send("Hello World");
