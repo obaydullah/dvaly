@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useContext } from "react";
+import React, { useReducer, useEffect, useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import InnerImageZoom from "react-inner-image-zoom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
@@ -31,6 +31,7 @@ function reducer(state, action) {
 }
 
 export default function ProductDetails() {
+  let [relatedProduct, setRelatedProduct] = useState([]);
   const navigate = useNavigate();
   const params = useParams();
 
@@ -54,6 +55,19 @@ export default function ProductDetails() {
     }
     fetchData();
   }, [params.slug]);
+
+  useEffect(() => {
+    async function fetchData() {
+      dispatch({ type: "FETCH_REQUEST" });
+      try {
+        const product = await axios.get("http://localhost:8000/products");
+        setRelatedProduct(product.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchData();
+  }, []);
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart } = state;
@@ -133,6 +147,17 @@ export default function ProductDetails() {
         ) : (
           <Alert variant="danger">Product Painai</Alert>
         )}
+        <Row>
+          <h2>Related Products</h2>
+          {relatedProduct.map((item) =>
+            item.category == products.category &&
+            item.name !== products.name ? (
+              <h1>{item.name}</h1>
+            ) : (
+              ""
+            )
+          )}
+        </Row>
       </Container>
     </>
   );

@@ -9,6 +9,7 @@ let data = [
     rating: 3,
     numberOfRating: 10,
     inStock: 10,
+    category: "one",
   },
   {
     _id: 2,
@@ -20,6 +21,7 @@ let data = [
     rating: 3.5,
     numberOfRating: 20,
     inStock: 16,
+    category: "two",
   },
   {
     _id: 3,
@@ -31,6 +33,7 @@ let data = [
     rating: 5,
     numberOfRating: 10,
     inStock: 18,
+    category: "one",
   },
   {
     _id: 4,
@@ -42,6 +45,7 @@ let data = [
     rating: 2.5,
     numberOfRating: 10,
     inStock: 15,
+    category: "two",
   },
   {
     _id: 5,
@@ -53,6 +57,7 @@ let data = [
     rating: 2,
     numberOfRating: 10,
     inStock: 0,
+    category: "one",
   },
   {
     _id: 6,
@@ -64,6 +69,7 @@ let data = [
     rating: 4,
     numberOfRating: 50,
     inStock: 20,
+    category: "three",
   },
 ];
 
