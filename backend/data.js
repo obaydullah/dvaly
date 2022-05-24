@@ -10,6 +10,9 @@ let data = [
     numberOfRating: 10,
     inStock: 10,
     category: "one",
+    cupon: "kire",
+    discount: 20,
+    discountLimit: 50,
   },
   {
     _id: 2,
@@ -34,6 +37,9 @@ let data = [
     numberOfRating: 10,
     inStock: 18,
     category: "one",
+    cupon: "hello",
+    discount: 50,
+    discountLimit: 45,
   },
   {
     _id: 4,
@@ -70,6 +76,30 @@ let data = [
     numberOfRating: 50,
     inStock: 20,
     category: "three",
+  },
+  {
+    _id: 7,
+    name: "shirt 7",
+    img: "/images/4.jpg",
+    price: "80",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+    rating: 5,
+    numberOfRating: 10,
+    inStock: 18,
+    category: "one",
+  },
+  {
+    _id: 8,
+    name: "shirt 8 ",
+    img: "/images/6.jpg",
+    price: "80",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+    rating: 5,
+    numberOfRating: 10,
+    inStock: 18,
+    category: "one",
   },
 ];
 
