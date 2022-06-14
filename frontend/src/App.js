@@ -21,9 +21,11 @@ import CartPage from "./components/CartPage";
 import Login from "./components/Login";
 import WishlistPage from "./components/WishlistPage";
 import Compare from "./components/Compare";
+import Shipping from "./components/Shipping";
 
 function App() {
-  const { state, dispatch, state2, dispatch2 } = useContext(Store);
+  const { state, dispatch, state2, dispatch2, state3, dispatch3 } =
+    useContext(Store);
 
   const [show, setShow] = useState(false);
 
@@ -38,12 +40,15 @@ function App() {
     wishlist: { wishlistItems },
   } = state2;
 
+  const { userInfo } = state3;
+
   let updateCart = (item, quantity) => {
     dispatch({
       type: "CART_ADD_ITEM",
       payload: { ...item, quantity },
     });
   };
+
   let handleDelete = (item) => {
     dispatch({
       type: "CART_REMOVE_ITEM",
@@ -55,6 +60,11 @@ function App() {
       type: "WISHLIST_REMOVE_ITEM",
       payload: item,
     });
+  };
+
+  const handleLogout = () => {
+    dispatch3({ type: "USER_LOGOUT" });
+    localStorage.removeItem("userInfo");
   };
 
   return (
@@ -136,6 +146,22 @@ function App() {
                   {state2.wishlist.wishlistItems.length}
                 </Badge>
               )}
+
+              {userInfo ? (
+                <NavDropdown title={userInfo.name} id="nav-dropdown">
+                  <NavDropdown.Item eventKey="4.4">
+                    Hello world
+                  </NavDropdown.Item>
+                  <NavDropdown.Item eventKey="4.4">
+                    Hello world
+                  </NavDropdown.Item>
+                  <NavDropdown.Item eventKey="4.4" onClick={handleLogout}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <Link to="/signin">Sign in</Link>
+              )}
               {/* WishList End  */}
             </Nav>
           </Container>
@@ -197,6 +223,7 @@ function App() {
           <Route path="/signin" element={<Login />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/compare" element={<Compare />} />
+          <Route path="/shipping" element={<Shipping />} />
         </Routes>
       </BrowserRouter>
     </>

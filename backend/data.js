@@ -1,6 +1,6 @@
 let data = [
   {
-    _id: 1,
+    // _id: 1,
     name: "shirt 1",
     img: "/images/1.jpg",
     price: "120",
@@ -15,7 +15,7 @@ let data = [
     discountLimit: 50,
   },
   {
-    _id: 2,
+    // _id: 2,
     name: "shirt 2",
     img: "/images/2.jpg",
     price: "150",
@@ -27,7 +27,7 @@ let data = [
     category: "two",
   },
   {
-    _id: 3,
+    // _id: 3,
     name: "shirt 3",
     img: "/images/3.jpg",
     price: "80",
@@ -42,7 +42,7 @@ let data = [
     discountLimit: 45,
   },
   {
-    _id: 4,
+    // _id: 4,
     name: "shirt 4",
     img: "/images/4.jpg",
     price: "125",
@@ -54,7 +54,7 @@ let data = [
     category: "two",
   },
   {
-    _id: 5,
+    // _id: 5,
     name: "shirt 5",
     img: "/images/5.jpg",
     price: "200",
@@ -66,7 +66,7 @@ let data = [
     category: "one",
   },
   {
-    _id: 6,
+    // _id: 6,
     name: "shirt 6",
     img: "/images/6.jpg",
     price: "250",
@@ -78,7 +78,7 @@ let data = [
     category: "three",
   },
   {
-    _id: 7,
+    // _id: 7,
     name: "shirt 7",
     img: "/images/4.jpg",
     price: "80",
@@ -90,7 +90,7 @@ let data = [
     category: "one",
   },
   {
-    _id: 8,
+    // _id: 8,
     name: "shirt 8 ",
     img: "/images/6.jpg",
     price: "80",

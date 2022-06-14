@@ -1,19 +1,41 @@
 import mongoose from "mongoose";
 
-const productSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true,
+let productSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    img: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    rating: Number,
+    numberOfRating: Number,
+    inStock: {
+      type: Number,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    cupon: String,
+    discount: Number,
+    discountLimit: Number,
+    brand: String,
   },
-});
+  { timestamps: true }
+);
 
-// _id: 5,
-// name: "shirt 5",
-// img: "/images/5.jpg",
-// price: "200",
-// description:
-//   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
-// rating: 2,
-// numberOfRating: 10,
-// inStock: 0,
+const Product = mongoose.model("Product", productSchema);
+export default Product;

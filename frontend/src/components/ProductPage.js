@@ -71,7 +71,7 @@ export default function ProductPage() {
     );
     const quantity = existingItem ? existingItem.quantity + 1 : 1;
     const { data } = await axios.get(
-      `http://localhost:8000/products/${products._id}`
+      `http://localhost:8000/products/${products.name}`
     );
 
     if (data.inStock < quantity) {
@@ -90,7 +90,6 @@ export default function ProductPage() {
       type: "WISHLIST_ADD_ITEM",
       payload: { ...products },
     });
-    console.log("click me");
   };
 
   const {
