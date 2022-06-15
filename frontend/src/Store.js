@@ -89,12 +89,38 @@ function reducer3(state, action) {
   }
 }
 
+// Shipping
+const initialState4 = {
+  userInfo: localStorage.getItem("shippingAddress")
+    ? JSON.parse(localStorage.getItem("shippingAddress"))
+    : null,
+};
+
+function reducer4(state, action) {
+  switch (action.type) {
+    case "SHIPPING_ADDRESS":
+      return { ...state, shippingAddress: action.payload };
+    default:
+      return state;
+  }
+}
+
 export default function StoreProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [state2, dispatch2] = useReducer(reducer2, initialState2);
   const [state3, dispatch3] = useReducer(reducer3, initialState3);
+  const [state4, dispatch4] = useReducer(reducer4, initialState4);
 
-  const value = { state, dispatch, state2, dispatch2, state3, dispatch3 };
+  const value = {
+    state,
+    dispatch,
+    state2,
+    dispatch2,
+    state3,
+    dispatch3,
+    state4,
+    dispatch4,
+  };
 
   return <Store.Provider value={value}>{props.children}</Store.Provider>;
 }

@@ -81,3 +81,12 @@
 .slick-arrow.slick-hidden {
   display: none;
 } /*# sourceMappingURL=slick.min.css.map */
+
+.step h3 {
+  text-align: center;
+  padding: 1rem;
+}
+.step .stepactive {
+  background: green;
+  color: white;
+}
