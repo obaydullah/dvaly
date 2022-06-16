@@ -22,6 +22,7 @@ import Login from "./components/Login";
 import WishlistPage from "./components/WishlistPage";
 import Compare from "./components/Compare";
 import Shipping from "./components/Shipping";
+import Signup from "./components/Signup";
 
 function App() {
   const { state, dispatch, state2, dispatch2, state3, dispatch3 } =
@@ -224,6 +225,7 @@ function App() {
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/compare" element={<Compare />} />
           <Route path="/shipping" element={<Shipping />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </BrowserRouter>
     </>
